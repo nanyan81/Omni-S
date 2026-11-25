@@ -1,0 +1,10 @@
+# 算法专属错误映射规则（算法层提供原始异常信息，异常捕获成员维护映射）
+algorithm: example_algorithm
+
+rules:
+  - match_exception: "FileNotFoundError"
+    error_code: "INPUT_ERROR"
+    retryable: false
+  - match_stderr_regex: "CUDA out of memory|OutOfMemoryError"
+    error_code: "RESOURCE_ERROR"
+    retryable: true

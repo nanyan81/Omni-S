@@ -1,0 +1,9 @@
+# 算法输出契约（提交给工作流编排 & 异常捕获成员用于输出完整性验证）
+algorithm: example_algorithm
+
+outputs:
+  - name: result_file
+    path: "result.h5ad"
+    format: H5AD
+    required: true
+    description: "算法主要计算产物"

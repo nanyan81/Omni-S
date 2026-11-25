@@ -1,0 +1,7 @@
+# 算法默认参数配置示例
+algorithm: example_algorithm
+version: "0.1.0"
+
+params:
+  seed: 42
+  # 在此补充该算法可调超参数

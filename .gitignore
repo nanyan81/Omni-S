@@ -1,0 +1,109 @@
+# =========================
+# 1. 严禁提交的科研数据与大文件
+# =========================
+# 空间组学与生信数据格式
+*.h5
+*.h5ad
+*.hdf5
+*.loom
+*.zarr/
+*.parquet
+*.feather
+*.tif
+*.tiff
+*.ome.tif
+*.ome.tiff
+*.svs
+*.ndpi
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.sam
+*.bai
+*.vcf
+*.vcf.gz
+*.mtx
+*.mtx.gz
+
+# 模型权重与大二进制文件
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.bin
+*.pkl
+*.pickle
+*.npy
+*.npz
+weights/
+!algorithms/_template/weights/.gitkeep
+!components/algorithms/_template/weights/.gitkeep
+
+# Docker 镜像归档与压缩包
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.rar
+*.7z
+*.sif
+
+# =========================
+# 2. 工作流与运行产物
+# =========================
+runs/
+work/
+.nextflow/
+.nextflow.log*
+trace*.txt
+timeline*.html
+report*.html
+dag*.svg
+dag*.png
+logs/
+*.log
+
+# =========================
+# 3. Python / R / C++ 环境与缓存
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+conda-meta/
+.ipynb_checkpoints/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# C / C++
+build/
+*.o
+*.so
+*.dll
+*.exe
+
+# =========================
+# 4. IDE / 系统临时文件
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.env
+.env.local

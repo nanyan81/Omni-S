@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omni-s.local/contracts/error_schema.v1.json",
+  "title": "Omni-S Task Execution & Error Report Schema",
+  "description": "统一任务执行结果与异常报告结构（v1.0）。注意：JSON 报告不能替代进程退出码，失败任务必须返回非零退出码。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "task_id",
+    "sample_id",
+    "algorithm",
+    "execution",
+    "diagnostics"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "运行批次唯一标识，例如 run_001"
+    },
+    "task_id": {
+      "type": "string",
+      "description": "任务唯一标识，例如 segmentation_001"
+    },
+    "sample_id": {
+      "type": "string",
+      "description": "样本标识，例如 sample_001"
+    },
+    "algorithm": {
+      "type": "object",
+      "required": ["name", "version", "language"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "language": { "type": "string" }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["status", "exit_code", "attempt"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["SUCCESS", "FAILED"]
+        },
+        "exit_code": { "type": "integer" },
+        "signal": { "type": ["string", "integer", "null"] },
+        "attempt": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "outputs": {
+      "type": ["object", "null"],
+      "description": "任务成功时记录正式输出路径及校验信息"
+    },
+    "error": {
+      "type": ["object", "null"],
+      "description": "任务失败时必填",
+      "required": ["error_code", "message", "retryable"],
+      "properties": {
+        "error_code": {
+          "type": "string",
+          "enum": [
+            "INPUT_ERROR",
+            "DATA_ERROR",
+            "PARAMETER_ERROR",
+            "ENVIRONMENT_ERROR",
+            "RESOURCE_ERROR",
+            "ALGORITHM_ERROR",
+            "OUTPUT_ERROR",
+            "EXECUTION_ERROR",
+            "UNKNOWN_ERROR"
+          ]
+        },
+        "original_error_type": { "type": ["string", "null"] },
+        "message": { "type": "string" },
+        "retryable": { "type": "boolean" }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "required": ["stdout_path", "stderr_path"],
+      "properties": {
+        "stdout_path": { "type": "string" },
+        "stderr_path": { "type": "string" },
+        "traceback_path": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

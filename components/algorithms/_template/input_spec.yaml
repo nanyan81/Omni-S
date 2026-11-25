@@ -1,0 +1,11 @@
+# 算法输入契约（提交给数据层 & 工作流编排成员）
+algorithm: example_algorithm
+
+inputs:
+  - name: standardized_data
+    format: H5AD
+    required: true
+    description: "符合项目统一 Schema 的空间组学数据"
+
+preprocessing:
+  - "在此列出需要数据层提前完成且不改变算法语义的前置步骤"
